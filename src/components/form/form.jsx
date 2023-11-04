@@ -50,7 +50,7 @@ export const Form = () => {
       return item.name === nameContact.toLowerCase();
     });
   };
-
+  // export nfn
   return (
     <div>
       <Cont>
