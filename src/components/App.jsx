@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+//import React, { useEffect, useState } from 'react';
 import { ContactsList } from './contactsList/contactsList';
 import Form from './form/form';
 import { Filter } from './filter/filter';
 
 export const App = () => {
-  const [contacts, setContacts] = useState(
-    () => JSON.parse(localStorage.getItem('contacts') ?? '')
-    //виклик анонімної фу - при перезавантаж не буде очистки localeStorage
-  );
-  const [filter, setFilter] = useState('');
+  // const [contacts, setContacts] = useState(
+  //   () => JSON.parse(localStorage.getItem('contacts') ?? '')
+  //виклик анонімної фу - при перезавантаж не буде очистки localeStorage
+  //);
+  //const [filter, setFilter] = useState('');
 
   // useEffect(() => {
   //   localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -28,15 +28,11 @@ export const App = () => {
   //   setContacts(prev => [...prev, newContact]);
   // };
 
-  const onChangeFilter = value => {
-    setFilter(value);
-  };
-
   //фу видалення контакту по id
-  const onDeleteContact = idContact => {
-    // змінює стан contacts
-    setContacts(contacts.filter(item => item.id !== idContact));
-  };
+  // const onDeleteContact = idContact => {
+  //   // змінює стан contacts
+  //   setContacts(contacts.filter(item => item.id !== idContact));
+  // };
 
   // const onContacts = filter => {
   //   if (filter === '') {

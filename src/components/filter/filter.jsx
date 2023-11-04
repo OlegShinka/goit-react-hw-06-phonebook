@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Cont, Inp } from './filter.styled';
 import { addFilter } from 'redux/filterSlice';
 
-export const Filter = ({ filterr, onChangeFilter }) => {
+export const Filter = () => {
   const filter = useSelector(state => state.filter);
   console.log('filter', filter);
   const dispatch = useDispatch();
