@@ -2,8 +2,13 @@ import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { Cont, Inp, FormStyle, BtnStyle } from './form.styled';
 import { TiUser, TiSortNumericallyOutline } from 'react-icons/ti';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
 
 export const Form = ({ onSubmitForm }) => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts);
+  console.log(contacts);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -12,9 +17,11 @@ export const Form = ({ onSubmitForm }) => {
     switch (name) {
       case 'name':
         setName(value);
+        // dispatch(type: name, payload:value)
         break;
       case 'number':
         setNumber(value);
+        // dispatch(type: number, payload:value)
         break;
       default:
         return;
@@ -29,10 +36,26 @@ export const Form = ({ onSubmitForm }) => {
       name: name,
       number: number,
     };
-    onSubmitForm(newContact); //виклик методу з App
+    dispatch(addContact(newContact));
+    //formSubmitHandler(newContact); //виклик методу з App
     // чистим інпути після сабміту
     setName('');
     setNumber('');
+  };
+
+  const checkContact = (nameContact, contacts) => {
+    return contacts.find(item => {
+      return item.name.toLowerCase() === nameContact.toLowerCase();
+    });
+  };
+
+  const formSubmitHandler = newContact => {
+    if (checkContact(newContact.name, contacts)) {
+      alert(`${newContact.name} is already in contacts.`);
+      return;
+    }
+    // dispatch(addContact(222));
+    //setContacts(prev => [...prev, newContact]);
   };
 
   return (
@@ -55,6 +78,7 @@ export const Form = ({ onSubmitForm }) => {
             Number <TiSortNumericallyOutline />
           </label>
           <Inp
+            autoComplete="on"
             type="tel"
             value={number}
             name="number"

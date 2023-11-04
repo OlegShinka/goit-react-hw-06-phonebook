@@ -1,6 +1,11 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { Cont, Inp } from './filter.styled';
+import { addFilter } from 'redux/filterSlice';
 
-export const Filter = ({ filter, onChangeFilter }) => {
+export const Filter = ({ filterr, onChangeFilter }) => {
+  const filter = useSelector(state => state.filter);
+  console.log('filter', filter);
+  const dispatch = useDispatch();
   return (
     <div>
       <Cont>
@@ -8,8 +13,8 @@ export const Filter = ({ filter, onChangeFilter }) => {
         <Inp
           type="text"
           name="filter"
-          value={filter}
-          onChange={evt => onChangeFilter(evt.target.value)}
+          // value={}
+          onChange={evt => dispatch(addFilter(evt.target.value))}
         />
       </Cont>
     </div>
