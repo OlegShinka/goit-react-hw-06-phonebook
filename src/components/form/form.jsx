@@ -5,7 +5,7 @@ import { TiUser, TiSortNumericallyOutline } from 'react-icons/ti';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contactsSlice';
 
-export const Form = ({ onSubmitForm }) => {
+export const Form = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts);
   console.log(contacts);
@@ -17,11 +17,9 @@ export const Form = ({ onSubmitForm }) => {
     switch (name) {
       case 'name':
         setName(value);
-        // dispatch(type: name, payload:value)
         break;
       case 'number':
         setNumber(value);
-        // dispatch(type: number, payload:value)
         break;
       default:
         return;
@@ -36,26 +34,21 @@ export const Form = ({ onSubmitForm }) => {
       name: name,
       number: number,
     };
-    dispatch(addContact(newContact));
-    //formSubmitHandler(newContact); //виклик методу з App
-    // чистим інпути після сабміту
-    setName('');
-    setNumber('');
-  };
 
-  const checkContact = (nameContact, contacts) => {
-    return contacts.find(item => {
-      return item.name.toLowerCase() === nameContact.toLowerCase();
-    });
-  };
-
-  const formSubmitHandler = newContact => {
     if (checkContact(newContact.name, contacts)) {
       alert(`${newContact.name} is already in contacts.`);
       return;
+    } else {
+      dispatch(addContact(newContact));
+      // чистим інпути після сабміту
+      setName('');
+      setNumber('');
     }
-    // dispatch(addContact(222));
-    //setContacts(prev => [...prev, newContact]);
+  };
+  const checkContact = (nameContact, contacts) => {
+    return [contacts].find(item => {
+      return item.name === nameContact.toLowerCase();
+    });
   };
 
   return (
