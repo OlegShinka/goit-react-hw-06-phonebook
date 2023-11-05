@@ -4,7 +4,7 @@ import { addFilter, getFilter } from 'redux/filterSlice';
 
 export const Filter = () => {
   const filter = useSelector(getFilter);
-  //console.log('filter', filter);
+  console.log('filter', filter);
   const dispatch = useDispatch();
   return (
     <div>
