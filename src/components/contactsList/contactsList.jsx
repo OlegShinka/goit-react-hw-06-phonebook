@@ -40,10 +40,10 @@
 // };
 
 import { Card } from 'components/contactCard/contactCard';
-import { nanoid } from 'nanoid';
+//import { nanoid } from 'nanoid';
 import { Cnt, List } from './contactsList.styled';
 import { useSelector } from 'react-redux';
-import { getContacts } from 'redux/contactsSlice';
+//import { getContacts } from 'redux/contactsSlice';
 export const ContactsList = () => {
   const contacts = useSelector(state => state.contacts.contacts);
 
