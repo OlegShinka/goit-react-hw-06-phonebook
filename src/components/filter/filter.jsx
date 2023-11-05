@@ -1,10 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Cont, Inp } from './filter.styled';
-import { addFilter, getFilter } from 'redux/filterSlice';
+import { addFilter } from 'redux/filterSlice';
 
 export const Filter = () => {
-  const filter = useSelector(getFilter);
-  console.log('filter', filter);
   const dispatch = useDispatch();
   return (
     <div>
@@ -13,7 +11,6 @@ export const Filter = () => {
         <Inp
           type="text"
           name="filter"
-          // value={}
           onChange={evt => dispatch(addFilter(evt.target.value))}
         />
       </Cont>

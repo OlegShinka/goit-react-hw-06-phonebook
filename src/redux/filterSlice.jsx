@@ -12,9 +12,8 @@ export const filterSlice = createSlice({
   },
 });
 
-export const filterReducer = filterSlice.reducer;
-export const { addFilter } = filterSlice.actions;
+export const filterReducer = filterSlice.reducer; // корневий редюсер
+export const { addFilter } = filterSlice.actions; // екшени
 
-export const getFilter = state => {
-  return state.filter;
-};
+//selectors
+export const getFilter = state => state.filter.filter;

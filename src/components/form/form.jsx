@@ -7,8 +7,8 @@ import { addContact } from 'redux/contactsSlice';
 
 export const Form = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
-  console.log(contacts);
+  const contacts = useSelector(state => state.contacts.contacts);
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -46,8 +46,8 @@ export const Form = () => {
     }
   };
   const checkContact = (nameContact, contacts) => {
-    return [contacts].find(item => {
-      return item.name === nameContact.toLowerCase();
+    return contacts.find(item => {
+      return item.name.toLowerCase() === nameContact.toLowerCase();
     });
   };
   // export nfn
@@ -76,7 +76,6 @@ export const Form = () => {
             value={number}
             name="number"
             onChange={handleChange}
-            // pattern="[a-zA-Z0-9]+"
             pattern="\\+?\\d{1,4}?[ .\\-\\s]?\\(?\\d{1,3}?\\)?[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,9}"
             required
           />
